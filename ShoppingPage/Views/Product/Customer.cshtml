@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ShoppingPage.EF.Product>
+
+@{
+    ViewBag.Title = "Customer";
+}
+
+<h2>Select your Product</h2>
+
+<form action="/Product/ShowSelectedProduct" method="post">
+
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CategoryId)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ProductPrice)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CategoryId)
+                </td>
+                <td>
+                    <input type="checkbox" name="selectedProducts[]" class="btn btn-success" value="@item.ProductId" />
+                </td>
+            </tr>
+        }
+
+    </table>
+    <input type="submit" value="Add To Cart" />
+</form>
